@@ -1,0 +1,254 @@
+/* COLOR DEF */
+/* from google style http://www.google.com/design/spec/style/color.html#color-color-palette */
+/* */
+$BLUE_50: #E3F2FD;
+$BLUE_500_TRANSPARENT: rgba(0, 150, 136, .2);
+$BLUE_500: #2196F3;
+$BLUE_900: #0D47A1;
+$BLUE_100: #BBDEFB;
+
+
+$TEAL_500: #009688;
+$TEAL_900: #004D40;
+$TEAL_A400: #1DE9B6;
+
+$PINK_500: #E91E63;
+$PINK_900: #880E4F;
+
+
+/* BACKGROUDNS */
+$background_main: $BLUE_50;
+$background_ok: $TEAL_500;
+$background_ok_2: $TEAL_900;
+
+$background_alert: $PINK_500;
+$background_alert_2: $PINK_900;
+
+$background_stripe: $BLUE_500_TRANSPARENT;
+
+$highlight_main: $BLUE_100;
+$highlight_alert: $TEAL_A400;
+
+$links: $PINK_900;
+$links_visited: $PINK_500; 
+
+
+/* MIXINS */
+/* from http://alistapart.com/article/getting-started-with-sass */
+@mixin clearfix {
+ // For modern browsers
+  &:before,
+  &:after {
+    content:"";
+    display:table;
+  }  
+  &:after {
+    clear:both;
+  }  
+  // For IE 6/7 (trigger hasLayout)
+  & {
+    zoom:1;
+  }
+}
+
+@mixin preserve-3d {
+  -ms-transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d; 
+  -moz-transform-style: preserve-3d; 
+  transform-style: preserve-3d;
+}
+
+@mixin vCentered_transform {
+  position: relative; 
+  top: 50%; 
+  -ms-transform: translateY(-50%); /* IE 9 */
+  -webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
+  -moz-transform: translateY(-50%); /* Firefox */
+  transform: translateY(-50%); 
+}
+
+@mixin vCentered_abs_pos($height, $width) {
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  height: $height; 
+  width: $width;
+  margin-top: -$height/2;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: -$width/2; 
+}
+
+
+/* CLASSES */
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+.clearfix {
+  @include clearfix;
+}
+.bg-1 {
+  background-color: $background_ok; 
+}
+.bg-1 .centered {
+  background-color: $background_ok_2; 
+  color: white;
+}
+.bg-1.not-working {
+  background-color: $background_alert;
+}
+.bg-1.not-working > * {
+  background-color: $background_alert_2; 
+}
+.bg-1 .highlight {
+  background-color: $highlight_alert; 
+  color: black;
+}
+
+.stripe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: right;
+  z-index: 2;
+  background-color: $background_stripe; 
+  color: white;
+  font-size: 70%;
+}
+.container {
+  width: 100%;
+  height: auto;
+  margin: 2% auto;
+  font-size: .8em;
+}
+.container > div {
+  width: 75%;
+  margin: auto;
+}
+.block {
+  margin: 2em auto 3em auto;
+  min-height: 265px;
+  @include clearfix;
+
+  pre {
+    margin: 0;
+  }
+}
+
+/* ELEMENTS */
+body {
+  background-color: $background_main; 
+  padding: 0 2%;
+}
+h2 {
+  margin-top: 83px;
+}
+section {
+  margin-top: 5em;
+}
+pre {
+  padding: 1%;
+}
+p > code {
+  background-color: $highlight_main; 
+  padding: 2px;
+}
+a {
+  color: $links; 
+
+  &:visited {
+  	color: $links_visited;
+  }
+}
+
+/* using transform */
+#using-transform .parent-element { 
+  height: 100vh;
+  @include preserve-3d; 
+} 
+#using-transform .centered { 
+  @include vCentered_transform; 
+}
+
+
+#using-transform .parent-element.not-working {
+	height: 75vh;
+} 
+#using-transform .parent-element.not-working.height-auto {
+	margin-top: 9em;
+	height: auto;
+}
+#using-transform .parent-element.not-working.overflow {
+	margin-top: 6em;
+	height: 100px;
+}
+#using-transform .parent-element.not-working.overflow .centered {
+	height: auto;
+}
+#using-transform .parent-element.not-working.overflow.scroll {
+	overflow: scroll;
+	margin-top: 3em;
+}
+
+
+
+
+/* using absolute postion */
+
+#using-absolute-position .parent-element { 
+	position: relative;
+	height: 500px;
+}
+
+#using-absolute-position .centered {
+  @include vCentered_abs_pos(280px, 75%);
+	/*position: absolute;
+	top: 50%;
+    left: 50%;
+    height: 280px;
+    width: 75%;
+    margin: -140px 0 0 -37.5%;*/
+}
+
+#using-absolute-position .parent-element.not-working { 
+	height: 75vh;
+}
+
+#using-absolute-position .not-working .centered {
+    height: 60%;
+    margin: -20% 0 0 -37.5%;
+}
+
+#using-absolute-position .parent-element.fix-units { 
+	height: 75vh;
+}
+
+
+@media screen and (max-width: 30em) {
+  body {
+  	padding: 1em;
+  }
+
+  .left,
+  .right {
+  	float: none;
+    margin: 5em auto;
+  }
+
+  .block {
+  	height: 100%;
+  }
+  a {
+  	display: inline-block;
+  	width: 18em;
+  	vertical-align: top;
+  }
+}	
+
+
+

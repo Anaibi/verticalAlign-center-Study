@@ -1,0 +1,185 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>verticalAlign(center)Study</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div class="stripe">
+          <h1>verticalAlign(center)Study</h1>
+        </div>
+        
+        <section id="using-transform">
+           
+            <h2>Using transform:</h2>
+           
+            <p><b>Font</b>: <a href="http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/" target="_blank">http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/</a></p>
+            
+            <p><b>Note</b>: If the <b>parent element</b> doesn't have <code>height</code> set, it doesn't work. On the other hand, doesn't need <b>centered element</b> height.</p>
+            
+            <p><code>preserve-3d</code> is used in the <b> parent element</b> to avoid blurry half-pixel issue -haven't tested-.</p>
+            
+            <p>Follow font link for mixin formulas.</p>
+
+            
+            <div class="block">
+                <div class="example parent-element container bg-1">
+                  <div class="centered">centered element<br />
+<pre><code>.parent-element { 
+  <span class="highlight">height: 85vh;</span>
+  -ms-transform-style: preserve-3d;     /* IE 9 */
+  -webkit-transform-style: preserve-3d; /* Chrome, Safari, Opera */
+  -moz-transform-style: preserve-3d;    /* Firefox */
+  transform-style: preserve-3d; 
+} 
+
+centered { 
+  position: relative; 
+  top: 50%; 
+  <span class="highlight">height: auto</span>
+  -ms-transform: translateY(-50%);      /* IE 9 */
+  -webkit-transform: translateY(-50%);  /* Chrome, Safari, Opera */
+  -moz-transform: translateY(-50%);     /* Firefox */
+  transform: translateY(-50%); 
+}</code></pre>
+                </div></div>
+            </div>
+            
+            <div class="block">
+                <p>If there's content in the parent div it won't get centered correctly:</p>
+                <div class="example parent-element not-working container bg-1">parent element
+                  <div class="centered">centered element
+<pre><code>.parent-element { 
+  <span class="highlight">height: 85vh;</span>
+  -ms-transform-style: preserve-3d;     /* IE 9 */
+  -webkit-transform-style: preserve-3d; /* Chrome, Safari, Opera */
+  -moz-transform-style: preserve-3d;    /* Firefox */
+  transform-style: preserve-3d; 
+} 
+
+centered { 
+  position: relative; 
+  top: 50%; 
+  <span class="highlight">height: auto</span>
+  -ms-transform: translateY(-50%);      /* IE 9 */
+  -webkit-transform: translateY(-50%);  /* Chrome, Safari, Opera */
+  -moz-transform: translateY(-50%);     /* Firefox */
+  transform: translateY(-50%); 
+}</code></pre>
+                </div></div>
+            </div>
+
+            <div class="block">
+                <p>If parent element doesn't have fix height:</p>
+                <div class="parent-element container not-working height-auto bg-1">
+                  <div class="centered">centered element<br /> 
+<pre><code>.parent-element { 
+  <span class="highlight">height: auto;</span>
+  ..
+} 
+
+//or height in %
+.parent-element { 
+  <span class="highlight">height: 100%;</span>
+  ..
+}</code></pre>
+                </div></div>
+            </div>
+
+            <div class="block">
+                <p>If centered element is higher than parent element:</p>
+                <div class="parent-element container not-working overflow bg-1">
+                  <div class="centered">centered element<br />
+<pre><code>.parent-element { 
+  <span class="highlight">height: 100px;</span>
+  ..
+} 
+
+.element { 
+  <span class="highlight">height: auto;</span>
+  ..
+}</code></pre>
+                </div></div>
+            </div>
+
+            <div class="block">
+                <p>If centered element is higher than parent element, with overflow: scroll</p>
+                <div class="parent-element container not-working overflow scroll bg-1">
+                  <div class="centered">centered element<br />
+<pre><code>.parent-element { 
+  <span class="highlight">height: 100px;</span>
+  ..
+} 
+
+.element { 
+  <span class="highlight">height: auto;</span>
+  ..
+}</code></pre>
+                </div></div>
+            </div>
+        </section>
+
+
+        <section id="using-absolute-position">
+            
+            <h2>Using absolute position:</h2>
+
+            <p><b>Font</b>: <a href="http://www.vanseodesign.com/css/vertical-centering/" target="_blank">http://www.vanseodesign.com/css/vertical-centering/</a></p>
+            
+            <p><b>Note</b>: If the <b>parent element</b> doesn't have <code>height</code> set, it doesn't work. Also needs to know <b>centered element</b> height (and width to center horizontally).</p>
+            
+            <p>Follow font link for very wide in-detail explanation and examples.</p>
+
+            <div class="block">
+                <p>Fix height units like px work better. Doesn't matter if there's content in parent element.</p>
+                <p>If the parent element has height in px, centered element can be in px, ems, vh, vw.
+                <div class="example parent-element container bg-1">parent element
+                <p>And some more content</p>
+                  <div class="centered">centered element<br />
+                    <pre><code>.parent-element {<br />  <span class="highlight">height: 700px;</span><br />  position: relative;<br />}<br /><br />.centered {<br />  position: absolute;<br />  top: 50%;<br />  left: 50%;<br />  height: 280px;<br />  width: 75%;<br />  margin: -140px 0 0 -37.5%<br />}<br /></code></pre>
+                </div></div>
+            </div>
+
+            <div class="block">
+                <p>Combining height units like vh and % doesn't scale good at all. The centered div at least needs fix units.</p>
+                <div class="example parent-element not-working container bg-1">parent element
+                  <div class="centered">centered element<br />
+                    <pre><code>.parent-element {<br />  <span class="highlight">height: 75vh;</span><br />  position: relative;<br />}<br /><br />.centered {<br />  position: absolute;<br />  top: 50%;<br />  left: 50%;<br />  <span class="highlight">height: 60%;</span><br />  width: 75%;<br />  margin: -20% 0 0 -37.5%<br />}<br /></code></pre>
+                </div></div>
+            </div>
+
+            <div class="block">
+                <p>With fix units in centered element:</p>
+                <div class="example parent-element fix-units container bg-1">parent element
+                  <div class="centered">centered element<br />
+                    <pre><code>.parent-element {<br />  <span class="highlight">height: 75vh;</span><br />  position: relative;<br />}<br /><br />.centered {<br />  position: absolute;<br />  top: 50%;<br />  left: 50%;<br />  <span class="highlight">height: 280px;</span><br />  width: 75%;<br />  margin: -140px 0 0 -37.5%<br />}<br /></code></pre>
+                </div></div>
+            </div>
+            
+        </section>
+
+
+<!-- not using yet 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script> 
+-->
+    </body>
+</html>

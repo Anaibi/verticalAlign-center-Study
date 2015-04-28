@@ -42,20 +42,18 @@
                 <div class="example parent-element container bg-1">
                   <div class="centered">centered element<br />
 <pre><code>.parent-element { 
-  <span class="highlight">height: 85vh;</span>
+  <span class="highlight">height: 100vh;</span>
+  -webkit-transform-style: preserve-3d; /* Chrome, Safari */
   -ms-transform-style: preserve-3d;     /* IE 9 */
-  -webkit-transform-style: preserve-3d; /* Chrome, Safari, Opera */
-  -moz-transform-style: preserve-3d;    /* Firefox */
   transform-style: preserve-3d; 
 } 
 
 .centered { 
   position: relative; 
   top: 50%; 
-  <span class="highlight">height: auto</span>
-  -ms-transform: translateY(-50%);      /* IE 9 */
-  -webkit-transform: translateY(-50%);  /* Chrome, Safari, Opera */
-  -moz-transform: translateY(-50%);     /* Firefox */
+  <span class="highlight">height: auto;</span>
+  -webkit-transform: translateY(-50%);  /* Chrome, Safari */
+  -ms-transform: translateY(-50%);      /* IE 9 */  
   transform: translateY(-50%); 
 }</code></pre>
                 </div></div>
@@ -66,20 +64,18 @@
                 <div class="example parent-element not-working container bg-1">parent element
                   <div class="centered">centered element
 <pre><code>.parent-element { 
-  <span class="highlight">height: 85vh;</span>
-  -ms-transform-style: preserve-3d;     /* IE 9 */
-  -webkit-transform-style: preserve-3d; /* Chrome, Safari, Opera */
-  -moz-transform-style: preserve-3d;    /* Firefox */
+  <span class="highlight">height: 100vh;</span>
+  -webkit-transform-style: preserve-3d; /* Chrome, Safari */
+  -ms-transform-style: preserve-3d;     /* IE 9 */  
   transform-style: preserve-3d; 
 } 
 
 .centered { 
   position: relative; 
   top: 50%; 
-  <span class="highlight">height: auto</span>
-  -ms-transform: translateY(-50%);      /* IE 9 */
-  -webkit-transform: translateY(-50%);  /* Chrome, Safari, Opera */
-  -moz-transform: translateY(-50%);     /* Firefox */
+  <span class="highlight">height: auto;</span>
+  -webkit-transform: translateY(-50%);  /* Chrome, Safari */
+  -ms-transform: translateY(-50%);      /* IE 9 */  
   transform: translateY(-50%); 
 }</code></pre>
                 </div></div>
@@ -124,6 +120,7 @@
                   <div class="centered">centered element<br />
 <pre><code>.parent-element { 
   <span class="highlight">height: 100px;</span>
+  overflow: scroll;
   ..
 } 
 

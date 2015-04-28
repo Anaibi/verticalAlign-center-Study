@@ -4,6 +4,7 @@
 /* BACKGROUDNS */
 /* MIXINS */
 /* from http://alistapart.com/article/getting-started-with-sass */
+/* needed prefixes : http://css3please.com/ */
 /* CLASSES */
 .left {
   float: left; }
@@ -98,7 +99,6 @@ a {
   height: 100vh;
   -ms-transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
   transform-style: preserve-3d; }
 
 #using-transform .centered {
@@ -107,13 +107,11 @@ a {
   -ms-transform: translateY(-50%);
   /* IE 9 */
   -webkit-transform: translateY(-50%);
-  /* Chrome, Safari, Opera */
-  -moz-transform: translateY(-50%);
-  /* Firefox */
+  /* Chrome, Safari */
   transform: translateY(-50%); }
 
 #using-transform .parent-element.not-working {
-  height: 75vh; }
+  height: 100vh; }
 
 #using-transform .parent-element.not-working.height-auto {
   margin-top: 9em;
@@ -144,20 +142,24 @@ a {
   margin-top: -140px;
   margin-right: 0;
   margin-bottom: 0;
-  margin-left: -37.5%;
-  	/*position: absolute;
-  	top: 50%;
-      left: 50%;
-      height: 280px;
-      width: 75%;
-      margin: -140px 0 0 -37.5%;*/ }
+  margin-left: -37.5%; }
 
 #using-absolute-position .parent-element.not-working {
   height: 75vh; }
 
 #using-absolute-position .not-working .centered {
+  /*   height: 60%;
+     margin: -20% 0 0 -37.5%;*/
+  /* (100% - 60%) /2 ? */
+  position: absolute;
+  top: 50%;
+  left: 50%;
   height: 60%;
-  margin: -20% 0 0 -37.5%; }
+  width: 75%;
+  margin-top: -30%;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: -37.5%; }
 
 #using-absolute-position .parent-element.fix-units {
   height: 75vh; }

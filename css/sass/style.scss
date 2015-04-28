@@ -50,11 +50,10 @@ $links_visited: $PINK_500;
     zoom:1;
   }
 }
-
+/* needed prefixes : http://css3please.com/ */;
 @mixin preserve-3d {
   -ms-transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d; 
-  -moz-transform-style: preserve-3d; 
   transform-style: preserve-3d;
 }
 
@@ -62,8 +61,7 @@ $links_visited: $PINK_500;
   position: relative; 
   top: 50%; 
   -ms-transform: translateY(-50%); /* IE 9 */
-  -webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
-  -moz-transform: translateY(-50%); /* Firefox */
+  -webkit-transform: translateY(-50%); /* Chrome, Safari */
   transform: translateY(-50%); 
 }
 
@@ -78,6 +76,7 @@ $links_visited: $PINK_500;
   margin-bottom: 0;
   margin-left: -$width/2; 
 }
+
 
 
 /* CLASSES */
@@ -177,7 +176,7 @@ a {
 
 
 #using-transform .parent-element.not-working {
-	height: 75vh;
+	height: 100vh;
 } 
 #using-transform .parent-element.not-working.height-auto {
 	margin-top: 9em;
@@ -207,12 +206,6 @@ a {
 
 #using-absolute-position .centered {
   @include vCentered_abs_pos(280px, 75%);
-	/*position: absolute;
-	top: 50%;
-    left: 50%;
-    height: 280px;
-    width: 75%;
-    margin: -140px 0 0 -37.5%;*/
 }
 
 #using-absolute-position .parent-element.not-working { 
@@ -220,8 +213,9 @@ a {
 }
 
 #using-absolute-position .not-working .centered {
-    height: 60%;
-    margin: -20% 0 0 -37.5%;
+ /*   height: 60%;
+    margin: -20% 0 0 -37.5%;*/ /* (100% - 60%) /2 ? */
+   @include vCentered_abs_pos(60%, 75%);
 }
 
 #using-absolute-position .parent-element.fix-units { 

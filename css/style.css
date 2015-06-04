@@ -1,40 +1,15 @@
-/* COLOR DEF */
-/* from google style http://www.google.com/design/spec/style/color.html#color-color-palette */
-/* */
-/* BACKGROUDNS */
-/* MIXINS */
-/* from http://alistapart.com/article/getting-started-with-sass */
-/* CLASSES */
-.left {
-  float: left; }
-
-.right {
-  float: right; }
-
-.clearfix:before, .clearfix:after {
-  content: "";
-  display: table; }
-.clearfix:after {
-  clear: both; }
-.clearfix {
-  zoom: 1; }
-
 .bg-1 {
   background-color: #009688; }
-
-.bg-1 .centered {
-  background-color: #004D40;
-  color: white; }
-
-.bg-1.not-working {
-  background-color: #E91E63; }
-
-.bg-1.not-working > * {
-  background-color: #880E4F; }
-
-.bg-1 .highlight {
-  background-color: #1DE9B6;
-  color: black; }
+  .bg-1 .centered {
+    background-color: #004D40;
+    color: white; }
+  .bg-1.not-working {
+    background-color: #E91E63; }
+    .bg-1.not-working > * {
+      background-color: #880E4F; }
+  .bg-1 .highlight {
+    background-color: #1DE9B6;
+    color: black; }
 
 .stripe {
   position: fixed;
@@ -51,26 +26,23 @@
   width: 100%;
   height: auto;
   margin: 2% auto;
-  font-size: .8em; }
-
-.container > div {
-  width: 75%;
-  margin: auto; }
+  font-size: 0.8em; }
+  .container > div {
+    width: 75%;
+    margin: auto; }
 
 .block {
   margin: 2em auto 3em auto;
   min-height: 265px; }
   .block:before, .block:after {
     content: "";
-    display: table; }
-  .block:after {
+    display: table;
     clear: both; }
   .block {
     zoom: 1; }
   .block pre {
     margin: 0; }
 
-/* ELEMENTS */
 body {
   background-color: #E3F2FD;
   padding: 0 2%; }
@@ -93,44 +65,31 @@ a {
   a:visited {
     color: #E91E63; }
 
-/* using transform */
 #using-transform .parent-element {
   height: 100vh;
+  transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d; }
-
+  -webkit-transform-style: preserve-3d; }
+  #using-transform .parent-element .not-working {
+    height: 100vh; }
+    #using-transform .parent-element .not-working.height-auto {
+      margin-top: 9em;
+      height: auto; }
+    #using-transform .parent-element .not-working.overflow {
+      margin-top: 6em;
+      height: 100px; }
+      #using-transform .parent-element .not-working.overflow .centered {
+        height: auto; }
+      #using-transform .parent-element .not-working.overflow.scroll {
+        overflow: scroll;
+        margin-top: 3em; }
 #using-transform .centered {
   position: relative;
   top: 50%;
   -ms-transform: translateY(-50%);
-  /* IE 9 */
   -webkit-transform: translateY(-50%);
-  /* Chrome, Safari, Opera */
-  -moz-transform: translateY(-50%);
-  /* Firefox */
   transform: translateY(-50%); }
 
-#using-transform .parent-element.not-working {
-  height: 75vh; }
-
-#using-transform .parent-element.not-working.height-auto {
-  margin-top: 9em;
-  height: auto; }
-
-#using-transform .parent-element.not-working.overflow {
-  margin-top: 6em;
-  height: 100px; }
-
-#using-transform .parent-element.not-working.overflow .centered {
-  height: auto; }
-
-#using-transform .parent-element.not-working.overflow.scroll {
-  overflow: scroll;
-  margin-top: 3em; }
-
-/* using absolute postion */
 #using-absolute-position .parent-element {
   position: relative;
   height: 500px; }
@@ -144,20 +103,21 @@ a {
   margin-top: -140px;
   margin-right: 0;
   margin-bottom: 0;
-  margin-left: -37.5%;
-  	/*position: absolute;
-  	top: 50%;
-      left: 50%;
-      height: 280px;
-      width: 75%;
-      margin: -140px 0 0 -37.5%;*/ }
+  margin-left: -37.5%; }
 
 #using-absolute-position .parent-element.not-working {
   height: 75vh; }
 
 #using-absolute-position .not-working .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   height: 60%;
-  margin: -20% 0 0 -37.5%; }
+  width: 75%;
+  margin-top: -30%;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: -37.5%; }
 
 #using-absolute-position .parent-element.fix-units {
   height: 75vh; }
